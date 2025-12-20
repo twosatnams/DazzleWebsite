@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dazzle | Elevating the Ballroom Competition Experience</title>
+    
+    <!-- Google Fonts: Playfair Display for elegance, Inter for readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dazzle: {
+                            gold: '#D4AF37',
+                            mutedGold: '#C5A028',
+                            dark: '#050505',
+                            charcoal: '#1a1a1a',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'spotlight-1': 'spotlight1 15s infinite alternate ease-in-out',
+                        'spotlight-2': 'spotlight2 20s infinite alternate ease-in-out',
+                        'float': 'float 10s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        spotlight1: {
+                            '0%': { transform: 'translate(-20%, -20%) scale(1)', opacity: '0.4' },
+                            '100%': { transform: 'translate(20%, 20%) scale(1.2)', opacity: '0.6' },
+                        },
+                        spotlight2: {
+                            '0%': { transform: 'translate(20%, 0%) scale(1)', opacity: '0.3' },
+                            '100%': { transform: 'translate(-20%, 10%) scale(1.1)', opacity: '0.5' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #f4f4f5;
+        }
+        
+        ::selection {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        /* Ambient Background Image */
+        .bg-ballroom {
+            /* Using a high-quality Unsplash image of a dark stage/dance floor */
+            background-image: url('https://images.unsplash.com/photo-1547483238-2cbf881a559f?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Kept subtle */
+            mix-blend-mode: luminosity;
+        }
+
+        /* Spotlight Effects */
+        .spotlight-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .orb-gold {
+            background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, rgba(0,0,0,0) 70%);
+            width: 60vw;
+            height: 60vw;
+            top: -10%;
+            left: -10%;
+        }
+
+        .orb-blue {
+            background: radial-gradient(circle, rgba(60, 70, 100, 0.4) 0%, rgba(0,0,0,0) 70%);
+            width: 70vw;
+            height: 70vw;
+            bottom: -20%;
+            right: -20%;
+        }
+
+        /* Dust Particles */
+        .particle-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #D4AF37;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 10s infinite linear;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-hidden">
+
+    <!-- LAYER 1: Background Image (Atmosphere) -->
+    <div class="absolute inset-0 bg-ballroom z-0 fixed"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dazzle-dark/90 via-dazzle-dark/70 to-dazzle-dark z-0"></div>
+
+    <!-- LAYER 2: Animated Spotlights -->
+    <div class="spotlight-orb orb-gold animate-spotlight-1"></div>
+    <div class="spotlight-orb orb-blue animate-spotlight-2"></div>
+
+    <!-- LAYER 3: Dust Particles (Simulating stage lights) -->
+    <div class="particle-container">
+        <!-- Manually placing a few "dust motes" -->
+        <div class="particle w-1 h-1 top-[20%] left-[20%]" style="animation-duration: 8s;"></div>
+        <div class="particle w-1.5 h-1.5 top-[60%] left-[80%]" style="animation-duration: 12s; opacity: 0.2"></div>
+        <div class="particle w-1 h-1 top-[40%] left-[50%]" style="animation-duration: 15s;"></div>
+        <div class="particle w-0.5 h-0.5 top-[80%] left-[10%]" style="animation-duration: 10s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-20 w-full px-6 py-8 flex justify-between items-center max-w-7xl mx-auto">
+        
+        <!-- LOGO SECTION -->
+        <div class="opacity-0 animate-fade-in flex items-center gap-4" style="animation-delay: 0.2s;">
+            <!-- 
+               REPLACE THIS SVG WITH YOUR LOGO IMAGE 
+               Example: <img src="your-logo.png" alt="Dazzle Logo" class="h-10 w-auto" />
+            -->
+            <div class="relative h-12 w-12 flex items-center justify-center">
+                <!-- Glowing effect behind logo -->
+                <div class="absolute inset-0 bg-dazzle-gold/20 blur-xl rounded-full"></div>
+                <!-- Placeholder Icon: Abstract Dancer/Flame -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-dazzle-gold relative z-10">
+                    <path d="M12 2C9 2 7 4 7 7C7 9.5 9 11 12 11C15 11 17 9.5 17 7C17 4 15 2 12 2Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M12 11C12 11 6 13 6 17C6 21 9 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M12 11C12 11 18 13 18 17C18 20 15 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M4 22C4 22 7 18 12 18C17 18 20 22 20 22" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5" />
+                </svg>
+            </div>
+            
+            <span class="font-serif text-xl tracking-wide text-white hidden sm:block">Dazzle</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-4">
+        
+        <!-- Content Wrapper (Removed glass-panel styling) -->
+        <div class="max-w-4xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.5s;">
+            
+            <!-- Status Pill -->
+            <div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full border border-dazzle-gold/20 bg-dazzle-gold/5 mb-8 backdrop-blur-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-dazzle-gold opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-dazzle-gold"></span>
+                </span>
+                <span class="text-[10px] uppercase tracking-widest text-dazzle-gold/80">Platform Launching 2026</span>
+            </div>
+
+            <!-- Hero Title -->
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 drop-shadow-lg">
+                Dazzle
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="font-sans font-light text-zinc-300 text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-10">
+                The new standard in ballroom competition management. <br class="hidden md:block"/>
+                <span class="italic font-serif text-dazzle-gold/80">Events, refined. Experience, elevated.</span>
+            </p>
+
+            <!-- Coming Soon Replacement -->
+            <div class="flex flex-col items-center justify-center">
+                <div class="relative px-8 py-3">
+                    <span class="font-serif italic text-3xl text-dazzle-gold opacity-90 tracking-wide">
+                        Coming Soon
+                    </span>
+                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-[1px] bg-dazzle-gold/50"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-8 text-center border-t border-white/5">
+        <div class="opacity-0 animate-fade-in" style="animation-delay: 1.5s;">
+            <p class="text-[10px] text-zinc-700 uppercase tracking-widest">
+                &copy; 2025 Dazzle Platform. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Init Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
