@@ -3,238 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dazzle | Elevating the Ballroom Competition Experience</title>
-    <link rel="icon" href="logo.png" type="image/png" />
-    
-    <!-- Google Fonts: Playfair Display for elegance, Inter for readability -->
+    <meta name="description" content="Dazzle is an archived ballroom competition management project by Satnam Dhanoa. Learn about the project and get in touch about ideas or acquisition.">
+    <meta name="theme-color" content="#050505">
+    <title>Dazzle — Ballroom Competition Software | Project Archive</title>
+    <link rel="icon" href="logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Custom Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dazzle: {
-                            gold: '#D4AF37',
-                            mutedGold: '#C5A028',
-                            dark: '#050505',
-                            charcoal: '#1a1a1a',
-                            light: '#f4f4f5'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Inter"', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
-                        'fade-in': 'fadeIn 1.5s ease-out forwards',
-                        'spotlight-1': 'spotlight1 15s infinite alternate ease-in-out',
-                        'spotlight-2': 'spotlight2 20s infinite alternate ease-in-out',
-                        'float': 'float 10s infinite ease-in-out',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        spotlight1: {
-                            '0%': { transform: 'translate(-20%, -20%) scale(1)', opacity: '0.4' },
-                            '100%': { transform: 'translate(20%, 20%) scale(1.2)', opacity: '0.6' },
-                        },
-                        spotlight2: {
-                            '0%': { transform: 'translate(20%, 0%) scale(1)', opacity: '0.3' },
-                            '100%': { transform: 'translate(-20%, 10%) scale(1.1)', opacity: '0.5' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            color-scheme: dark;
+            --gold: #D4AF37;
+            --dark: #050505;
+            --text: #f4f4f5;
+            --muted: #b8b8c0;
+        }
+
+        * { box-sizing: border-box; }
+
         html {
-            background-color: #050505;
-            color: #f4f4f5;
-            overflow-x: hidden;
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
+            min-height: 100%;
+            background: var(--dark);
         }
 
         body {
-            max-width: 100vw;
-            background-color: #050505;
-            color: #f4f4f5;
-            overflow-x: hidden;
-            width: 100%;
+            margin: 0;
             min-height: 100vh;
-            height: 100%;
-            position: relative;
-        }
-        
-        ::selection {
-            background: #D4AF37;
-            color: #000;
-        }
-
-        /* Ambient Background Image */
-        .bg-ballroom {
-            /* Using a high-quality Unsplash image of a dark stage/dance floor */
-            background-image: url('https://images.unsplash.com/photo-1547483238-2cbf881a559f?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15; /* Kept subtle */
-            mix-blend-mode: luminosity;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            background:
+                radial-gradient(ellipse at 12% 18%, rgba(212, 175, 55, 0.08), transparent 48%),
+                radial-gradient(ellipse at 90% 85%, rgba(28, 57, 89, 0.24), transparent 50%),
+                var(--dark);
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Spotlight Effects */
-        .spotlight-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 1;
-            pointer-events: none;
-            overflow: hidden;
+        ::selection { background: var(--gold); color: var(--dark); }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px 40px;
+            text-align: center;
         }
 
-        .orb-gold {
-            background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, rgba(0,0,0,0) 70%);
-            width: min(60vw, 500px);
-            height: min(60vw, 500px);
-            top: 5%;
-            left: -5%;
+        .project { width: 100%; max-width: 640px; }
+
+        .logo {
+            display: block;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 0 auto 24px;
+            filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.12));
         }
 
-        .orb-blue {
-            background: radial-gradient(circle, rgba(60, 70, 100, 0.4) 0%, rgba(0,0,0,0) 70%);
-            width: min(70vw, 600px);
-            height: min(70vw, 600px);
-            bottom: 5%;
-            right: -10%;
+        .status {
+            display: inline-block;
+            margin: 0 0 20px;
+            padding: 7px 12px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.04);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
         }
 
-        /* Dust Particles */
-        .particle-container {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 2;
-            pointer-events: none;
-            top: 0;
-            left: 0;
+        h1 {
+            margin: 0 0 12px;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(64px, 12vw, 88px);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
         }
-        
-        .particle {
-            position: absolute;
-            background: #D4AF37;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 10s infinite linear;
+
+        .subtitle {
+            margin: 0 0 28px;
+            color: var(--gold);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(21px, 5vw, 26px);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .description, .availability, .contact {
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .description { max-width: 610px; color: #d4d4d8; }
+
+        .availability {
+            max-width: 540px;
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact {
+            max-width: 510px;
+            margin-top: 28px;
+            color: #d4d4d8;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px 24px;
+            margin-top: 20px;
+        }
+
+        a { color: var(--gold); text-underline-offset: 4px; }
+
+        a:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 5px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .contact-link:hover { background: #e5c65b; border-color: #e5c65b; }
+        .creator-link { padding: 12px 0; font-size: 14px; }
+        .creator-link:hover { color: #f0d67e; }
+
+        footer {
+            padding: 22px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            color: #94949e;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        footer p { margin: 0; }
+
+        @media (max-width: 480px) {
+            main { padding: 32px 22px; }
+            .logo { width: 68px; height: 68px; margin-bottom: 20px; }
+            .description { font-size: 15px; }
+            .actions { flex-direction: column; gap: 4px; }
+            .contact-link { width: 100%; max-width: 280px; }
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col relative">
-
-    <!-- LAYER 1: Background Image (Atmosphere) -->
-    <div class="fixed inset-0 bg-ballroom z-0"></div>
-    <div class="fixed inset-0 bg-gradient-to-b from-dazzle-dark/90 via-dazzle-dark/70 to-dazzle-dark z-0"></div>
-
-    <!-- LAYER 2: Animated Spotlights -->
-    <div class="spotlight-orb orb-gold animate-spotlight-1"></div>
-    <div class="spotlight-orb orb-blue animate-spotlight-2"></div>
-
-    <!-- LAYER 3: Dust Particles (Simulating stage lights) -->
-    <div class="particle-container">
-        <!-- Manually placing a few "dust motes" -->
-        <div class="particle w-1 h-1 top-[20%] left-[20%]" style="animation-duration: 8s;"></div>
-        <div class="particle w-1.5 h-1.5 top-[60%] left-[80%]" style="animation-duration: 12s; opacity: 0.2"></div>
-        <div class="particle w-1 h-1 top-[40%] left-[50%]" style="animation-duration: 15s;"></div>
-        <div class="particle w-0.5 h-0.5 top-[80%] left-[10%]" style="animation-duration: 10s;"></div>
-    </div>
-
-    <!-- Spacer for top padding -->
-    <div class="relative z-20 w-full py-8"></div>
-
-    <!-- Main Content -->
-    <main class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-4">
-        
-        <!-- Content Wrapper (Removed glass-panel styling) -->
-        <div class="max-w-4xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.5s;">
-
-            <!-- Centered Logo -->
-            <div class="flex justify-center mb-8">
-                <div class="relative h-16 w-16 md:h-20 md:w-20 flex items-center justify-center">
-                    <!-- Glowing effect behind logo -->
-                    <div class="absolute inset-0 bg-dazzle-gold/20 blur-xl rounded-full"></div>
-                    <!-- Logo Image -->
-                    <img src="logo.png" alt="Dazzle Logo" class="relative h-14 w-14 md:h-18 md:w-18"/>
-                </div>
-            </div>
-
-            <!-- Status Pill -->
-            <div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full border border-dazzle-gold/20 bg-dazzle-gold/5 mb-8 backdrop-blur-sm">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-dazzle-gold opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-dazzle-gold"></span>
-                </span>
-                <span class="text-[10px] uppercase tracking-widest text-dazzle-gold/80">Platform Launching 2026</span>
-            </div>
-
-            <!-- Hero Title -->
-            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 drop-shadow-lg">
-                Dazzle
-            </h1>
-
-            <!-- Subtitle -->
-            <p class="font-sans font-light text-zinc-300 text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-10">
-                The new standard in ballroom competition management. <br/>
-                <span class="italic font-serif text-dazzle-gold/80">Events, refined. Experience, elevated.</span>
-            </p>
-
-            <!-- Coming Soon -->
-            <div class="flex flex-col items-center justify-center">
-                <div class="relative px-8 py-3 group cursor-default select-none">
-                    <span class="block font-serif italic text-3xl text-dazzle-gold opacity-90 tracking-wide transition-transform duration-700 ease-out group-hover:-translate-y-2">
-                        Coming Soon
-                    </span>
-                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-[1px] bg-dazzle-gold/50 transition-all duration-700 ease-out group-hover:w-3/4 group-hover:bg-dazzle-gold group-hover:opacity-100"></div>
-                </div>
-            </div>
-        </div>
-
+<body>
+    <main>
+        <article class="project" aria-labelledby="project-title">
+            <img class="logo" src="logo.png" width="80" height="80" alt="Dazzle ballroom dancers emblem">
+            <p class="status">Project archive</p>
+            <h1 id="project-title">Dazzle</h1>
+            <p class="subtitle">Built from a love of ballroom.</p>
+            <p class="description">Dazzle was a software project created to modernize ballroom competition management. Drawing on my experience as a competitive dancer and software engineer, I set out to improve the experience for organizers and dancers.</p>
+            <p class="availability">The project is no longer in active development and is not currently available as a hosted service. This page preserves its story.</p>
+            <p class="contact">Interested in the project, an acquisition, or exploring related ideas? I’d be glad to hear from you.</p>
+            <nav class="actions" aria-label="Contact and creator">
+                <a class="contact-link" href="https://www.linkedin.com/in/satnamdhanoa">Contact Satnam</a>
+                <a class="creator-link" href="https://satnamdhanoa.com">About the creator</a>
+            </nav>
+        </article>
     </main>
-
-    <!-- Footer -->
-    <footer class="relative z-10 w-full py-8 text-center border-t border-white/5">
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 1.5s;">
-            <p class="text-[10px] text-zinc-700 uppercase tracking-widest">
-                &copy; 2025 Dazzle Platform. All Rights Reserved.
-            </p>
-        </div>
+    <footer>
+        <p>&copy; 2026 Dazzle. Created by Satnam Dhanoa.</p>
     </footer>
-
-    <!-- Init Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
